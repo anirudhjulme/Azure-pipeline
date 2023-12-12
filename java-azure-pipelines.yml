@@ -4,6 +4,7 @@
 # Only snapshots are deployed to the Azure Artifacts repository
 
 trigger:
+- main
 - develop
 - user-story/*
 - release/*
