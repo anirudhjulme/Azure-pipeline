@@ -5,12 +5,17 @@
 
 trigger:
 - main
-- develop
-- user-story/*
-- release/*
+- task: Maven@4
+  inputs:
+    mavenPomFile: 'pom.xml'
+    publishJUnitResults: true
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    javaHomeOption: 'JDKVersion'
+    mavenVersionOption: 'Default'
+    mavenAuthenticateFeed: false
+    effectivePomSkip: false
+    sonarQubeRunAnalysis: false
 
-variables:
-- group: Maven Release Pipelines
 
 pool:
   vmImage: 'ubuntu-latest'
