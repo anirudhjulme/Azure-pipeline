@@ -1,11 +1,20 @@
-
 trigger:
-- main
+- main  # Define the branch to trigger the pipeline
 
 pool:
-  vmImage: ubuntu
+  vmImage: 'ubuntu-latest'  # Choose the desired agent image
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+- script: |
+    echo "Hello, Azure DevOps!"  # Add your build commands here
+    # Example commands:
+    # npm install
+    # npm run build
+    # dotnet build
 
+  displayName: 'Run Build'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathtoPublish: '$(Build.ArtifactStagingDirectory)'  # Define the path to artifacts
+    artifactName: 'build-output'  # Name of the artifact
